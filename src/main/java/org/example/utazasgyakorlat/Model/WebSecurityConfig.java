@@ -30,14 +30,18 @@ public class WebSecurityConfig {
                 http.csrf(csrf -> csrf.disable())
                         .authorizeHttpRequests(
                                 auth -> auth
-                                        .requestMatchers("/","/jelszoteszt").anonymous()
-                                        .requestMatchers("/resources/**", "/","/home").authenticated()
-                                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                                        .requestMatchers("/resources/**", "/").permitAll()
+                                        .requestMatchers("/resources/**", "/","/login").anonymous()
                                         .requestMatchers ("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz").anonymous()
+
+                                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                                        .anyRequest().authenticated()
                         )
+
                         .formLogin(
                                 form -> form
-                                        .defaultSuccessUrl("/home").permitAll()
+                                        .defaultSuccessUrl("/").permitAll()
                         ).logout(
                                 logout -> logout
                                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -51,5 +55,6 @@ public class WebSecurityConfig {
             throws Exception {
         return configuration.getAuthenticationManager();
     }
+
 
 }

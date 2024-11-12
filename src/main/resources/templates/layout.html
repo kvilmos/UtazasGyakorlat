@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Alapértelmezett cím</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.svg">
+</head>
+<body>
+    <header>
+        <nav th:insert="~{menu}">
+        </nav>
+    </header>
+    <!--section class="heroimage">
+        <img src="/images/hero.png" alt="Hero image"/>
+    </section-->
+
+    <main>
+        <div th:replace="~{${contentTemplate}}"></div>
+    </main>
+
+    <footer>
+        <p>Weboldal lábléc</p>
+    </footer>
+</body>
+</html>
