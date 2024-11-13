@@ -30,12 +30,15 @@ public class WebSecurityConfig {
                 http.csrf(csrf -> csrf.disable())
                         .authorizeHttpRequests(
                                 auth -> auth
-                                        .requestMatchers("/resources/**", "/").permitAll()
+                                        .requestMatchers("/resources/**", "/" ,"/contact", "/contact_sendmessage").permitAll()
                                         .requestMatchers("/resources/**", "/","/login").anonymous()
                                         .requestMatchers ("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz").anonymous()
 
+                                        //.requestMatchers("/resources/**","/offers").permitAll() //TEST
+
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+
                                         .anyRequest().authenticated()
                         )
 

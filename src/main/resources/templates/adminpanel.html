@@ -1,1 +1,25 @@
-<p>Admin</p>
+<h1>Admin Panel</h1>
+<div id="messages-container">
+    <p>Loading messages...</p>
+</div>
+<script>
+    // Üzenetek lekérdezése és megjelenítése
+    function fetchMessages() {
+        fetch('/admin/messages')
+            .then(response => response.json())
+            .then(messages => {
+                // Üzenetek megjelenítése a div elemben
+                let messagesContainer = document.getElementById('messages-container');
+                messagesContainer.innerHTML = "";  // Töröljük a régi tartalmat
+                messages.forEach(message => {
+                    messagesContainer.innerHTML += `<p><strong>${message.email}</strong>: ${message.message} <em>(${new Date(message.date).toLocaleString()})</em></p>`;
+                });
+            })
+            .catch(error => console.error("Error fetching messages:", error));
+    }
+
+    // 5 másodpercenként frissítjük az üzeneteket
+    setInterval(fetchMessages, 5000);
+    // Első lekérdezés az oldal betöltésekor
+    fetchMessages();
+</script>

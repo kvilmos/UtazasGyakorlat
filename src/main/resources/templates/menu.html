@@ -11,10 +11,13 @@
                <a th:href="@{/regisztral}">Regisztrál</a>
            </li>
         <li sec:authorize="isAuthenticated()" >
-            <a th:href="@{/offers}">Ajánlatok</a>
+            <a th:href="@{/offers}">Offers</a>
         </li >
         <li sec:authorize="hasRole('ROLE_ADMIN')">
             <a th:href="@{/admin/adminpanel}">AdminPanel</a>
+        </li>
+        <li>
+            <a th:href="@{/contact}">Contact Us</a>
         </li>
         <li sec:authorize="isAuthenticated()">
             <a th:href="@{/logout}">Logout</a>

@@ -1,0 +1,6 @@
+<p>contact</p>
+<form action="#" th:action="@{/contact_sendmessage}" th:object="${contactMessage}" method="post">
+    <p><input type="text" th:field="*{email}" placeholder="E-mail" required/></p>
+    <p><input type="text" th:field="*{message}" placeholder="Message" required/></p>
+    <p><input type="submit" value="Send" /></p>
+</form>
