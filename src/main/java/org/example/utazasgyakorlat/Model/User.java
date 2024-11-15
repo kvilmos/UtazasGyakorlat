@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -31,6 +33,19 @@ public class User {
     @Size(min=6, max=256)
     private String password;
     private String role;
+
+
+    @OneToMany
+    @JoinColumn(name = "userid",nullable = true)
+    private List<ContactMessage> ContactMessages;
+
+    public List<ContactMessage> getContactMessages() {
+        return ContactMessages;
+    }
+
+    public void setContactMessages(List<ContactMessage> contactMessages) {
+        ContactMessages = contactMessages;
+    }
 
     public String getLastname() {
         return lastname;

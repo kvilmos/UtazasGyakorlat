@@ -15,14 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import java.util.stream.StreamSupport;
 
-import java.net.Authenticator;
-import java.security.Principal;
-import java.util.List;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.*;
+import java.util.stream.StreamSupport;
 
 
 @Controller
@@ -36,7 +31,6 @@ public class HomeController {
         model.addAttribute("contentTemplate", "home");
         return "layout";
     }
-
 
     @GetMapping("/offers")
     public String offers(Model model) {
@@ -94,12 +88,12 @@ public class HomeController {
             Optional<User> userOptional = userRepo.findByEmail(userEmail);
 
             if (userOptional.isPresent()) {
-                contactMessage.setUserid(userOptional.get().getId());
-            } else {
-                contactMessage.setUserid(0);
+                contactMessage.setUser(userOptional.get());
             }
-        } else {
-            contactMessage.setUserid(0);
+        }
+        else {
+
+            contactMessage.setUser(null);
         }
         contactMessageRepository.save(contactMessage);
 
@@ -111,22 +105,31 @@ public class HomeController {
 
     @GetMapping("/admin/messages")
     @ResponseBody
-    public Iterable<ContactMessage> getMessages() {
-        return contactMessageRepository.findAll();
+    public List<Map<String, String>> getMessages() {
+        List<ContactMessage> messages = (List<ContactMessage>) contactMessageRepository.findAll();
+        List<Map<String, String>> responseMessages = new ArrayList<>();
+
+        for (ContactMessage message : messages) {
+            Map<String, String> messageData = new HashMap<>();
+            if (message.getUser() != null) {
+                // Ha van kapcsolódó felhasználó
+                messageData.put("userName", message.getUser().getFirstname() + " " + message.getUser().getLastname());
+            } else {
+                // Ha nincs kapcsolódó felhasználó, akkor a vendég email címét használjuk
+                messageData.put("userName", "Guest");
+            }
+            messageData.put("message", message.getMessage());
+            messageData.put("date", message.getDate().toString());
+            responseMessages.add(messageData);
+        }
+
+        return responseMessages;
     }
 
     @GetMapping("/admin/adminpanel")
     public String admin(Model model) {
         model.addAttribute("title", "CAMELUM - AdminPanel");
         model.addAttribute("contentTemplate", "adminpanel");
-        String str = "";
-
-        for(ContactMessage message : contactMessageRepository.findAll()) {
-            str+=message.getEmail()+"; "+message.getMessage()+";"+message.getDate();
-            str+="<br>";
-        }
-        model.addAttribute("str", str);
-
         return "layout";
     }
 

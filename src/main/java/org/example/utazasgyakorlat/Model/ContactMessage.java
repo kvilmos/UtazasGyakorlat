@@ -1,9 +1,6 @@
 package org.example.utazasgyakorlat.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -18,7 +15,6 @@ public class ContactMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int userid;
     @NotNull
     @NotEmpty
     @Size(min = 2, max = 256)
@@ -30,6 +26,19 @@ public class ContactMessage {
     @Size(min=6, max=256)
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-z]{2,7}$")
     private String email;
+
+
+    @ManyToOne
+    @JoinColumn(name = "userid",nullable = true)
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getEmail() {
         return email;
@@ -45,14 +54,6 @@ public class ContactMessage {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserid() {
-        return userid;
-    }
-
-    public void setUserid(int userid) {
-        this.userid = userid;
     }
 
     public String getMessage() {
