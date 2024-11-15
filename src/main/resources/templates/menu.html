@@ -8,7 +8,7 @@
                <a th:href="@{/login}">Login</a>
            </li>
            <li sec:authorize="isAnonymous()">
-               <a th:href="@{/regisztral}">Regisztrál</a>
+               <a th:href="@{/registration}">Registration</a>
            </li>
         <li sec:authorize="isAuthenticated()" >
             <a th:href="@{/offers}">Offers</a>

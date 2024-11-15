@@ -1,6 +1,11 @@
-<p>contact</p>
-<form action="#" th:action="@{/contact_sendmessage}" th:object="${contactMessage}" method="post">
-    <p><input type="text" th:field="*{email}" placeholder="E-mail" required/></p>
-    <p><input type="text" th:field="*{message}" placeholder="Message" required/></p>
-    <p><input type="submit" value="Send" /></p>
-</form>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<div th:fragment="content">
+    <p>contact</p>
+    <form action="#" th:action="@{/contact_sendmessage}" th:object="${contactMessage}" method="post">
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        <p><input type="text" th:field="*{email}" placeholder="E-mail"/></p>
+        <p th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></p>
+        <p><input type="text" th:field="*{message}" placeholder="Message" /></p>
+        <p><input type="submit" value="Send" /></p>
+    </form>
+</div>

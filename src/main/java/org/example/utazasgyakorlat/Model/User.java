@@ -1,5 +1,9 @@
 package org.example.utazasgyakorlat.Model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="users")
@@ -7,9 +11,42 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
+    @NotNull
+    @NotEmpty
+    @Size( min= 2, max=256)
+    @Pattern(regexp = "[A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű]{2,256}")
+    private String firstname;
+    @NotNull
+    @NotEmpty
+    @Size(min=2, max=256)
+    @Pattern(regexp =  "[A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű]{2,256}")
+    private String lastname;
+    @NotNull
+    @NotEmpty
+    @Size(min=6, max=256)
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-z]{2,7}$")
     private String email;
+    @NotNull
+    @NotEmpty
+    @Size(min=6, max=256)
     private String password;
+    private String role;
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
     public Integer getId() {
         return id;
@@ -17,14 +54,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
@@ -51,5 +80,4 @@ public class User {
         this.role = role;
     }
 
-    private String role;
 }

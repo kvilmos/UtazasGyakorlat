@@ -1,7 +1,9 @@
-<h1>Admin Panel</h1>
-<div id="messages-container">
-    <p>Loading messages...</p>
-</div>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<div th:fragment="content">
+    <h1>Admin Panel</h1>
+    <div id="messages-container">
+        <p>Loading messages...</p>
+    </div>
 <script>
     // Üzenetek lekérdezése és megjelenítése
     function fetchMessages() {
@@ -23,3 +25,4 @@
     // Első lekérdezés az oldal betöltésekor
     fetchMessages();
 </script>
+</div>

@@ -32,7 +32,7 @@ public class WebSecurityConfig {
                                 auth -> auth
                                         .requestMatchers("/resources/**", "/" ,"/contact", "/contact_sendmessage").permitAll()
                                         .requestMatchers("/resources/**", "/","/login").anonymous()
-                                        .requestMatchers ("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz").anonymous()
+                                        .requestMatchers ("/resources/**", "/", "/registration", "/registration_process").anonymous()
 
                                         //.requestMatchers("/resources/**","/offers").permitAll() //TEST
 
@@ -44,7 +44,10 @@ public class WebSecurityConfig {
 
                         .formLogin(
                                 form -> form
-                                        .defaultSuccessUrl("/").permitAll()
+                                        .loginPage("/login")
+                                        .defaultSuccessUrl("/")
+                                        .failureUrl("/login?error=true")
+                                        .permitAll()
                         ).logout(
                                 logout -> logout
                                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

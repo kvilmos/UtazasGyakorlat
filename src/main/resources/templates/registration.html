@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="content">
+    <h3>Create your account!</h3>
+    <p th:utext=" ${error}">
+    <p th:if="${param.error}">Incorrect Password or Email</p>
+    <form action="#" th:action="@{/registration_process}" th:object="${reg}" method="post">
+            <legend>Sign Up</legend>
+            <p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></p>
+            <p><input type="text" th:field="*{firstname}" placeholder="Firstname" required maxlength="256" minlength="2" pattern="^[A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű]{2,256}$"/></p>
+            <p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></p>
+            <p><input type="text" th:field="*{lastname}" placeholder="Lastname" required maxlength="256" minlength="2" pattern="^[A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű]{2,256}$" /></p>
+            <p th:if="${#fields.hasErrors('email')}">Invalid Email form</p>
+            <p><input type="email" th:field="*{email}" placeholder="Email" required maxlength="256" minlength="6" pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-z]{2,7}$"/></p>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+            <p><input type="password" th:field="*{password}" placeholder="Password" required maxlength="256" minlength="6"/></p>
+            <p><input type="submit" value="Sign Up" /></p>
+    </form>
+</div>
+
