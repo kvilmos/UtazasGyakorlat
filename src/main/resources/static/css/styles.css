@@ -100,7 +100,7 @@ footer {
 
 body::before {
     content: '';
-    background-image: url('https://example.com/sand-dunes.jpg');
+    background-image: none;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
