@@ -128,7 +128,7 @@ public class HomeController {
 
     @GetMapping("/admin/adminpanel")
     public String admin(Model model) {
-        model.addAttribute("title", "CAMELUM - AdminPanel");
+        model.addAttribute("title", "CAMELUM - Admin Panel");
         model.addAttribute("contentTemplate", "adminpanel");
         return "layout";
     }
