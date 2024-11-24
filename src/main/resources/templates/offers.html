@@ -1,5 +1,79 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:fragment="content">
-    <p>Ajánlatok Lista</p>
-    <p th:utext="${str}"></p>
+    <section class="offers-section">
+        <h2 class="section-title">Offers</h2>
+
+        <h3>Spring Offers</h3>
+        <div class="table-wrapper">
+            <table class="offers-table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Hotel Code</th>
+                    <th>Departure</th>
+                    <th>Duration (Days)</th>
+                    <th>Price (€)</th>
+                    <th>Hotel Name</th>
+                    <th>Location</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="offer : ${tavaszOffers}">
+                    <td th:text="${offer.sorszam}"></td>
+                    <td th:text="${offer.szalloda_az}"></td>
+                    <td th:text="${offer.indulas}"></td>
+                    <td th:text="${offer.idotartam}"></td>
+                    <td th:text="${offer.ar}"></td>
+                    <td th:text="${offer.szalloda.nev}"></td>
+                    <td th:text="${offer.szalloda.helyseg.nev}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Hotels</h3>
+        <div class="table-wrapper">
+            <table class="offers-table">
+                <thead>
+                <tr>
+                    <th>Hotel Code</th>
+                    <th>Name</th>
+                    <th>Rating</th>
+                    <th>Distance to Beach (m)</th>
+                    <th>Distance to Airport (m)</th>
+                    <th>Half-Board Available</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="hotel : ${szallodas}">
+                    <td th:text="${hotel.az}"></td>
+                    <td th:text="${hotel.nev}"></td>
+                    <td th:text="${hotel.besorolas}"></td>
+                    <td th:text="${hotel.tengerpart_tav}"></td>
+                    <td th:text="${hotel.repter_tav}"></td>
+                    <td th:text="${hotel.felpanzio ? 'Yes' : 'No'}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Locations</h3>
+        <div class="table-wrapper">
+            <table class="offers-table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="helyseg : ${helysegs}">
+                    <td th:text="${helyseg.az}"></td>
+                    <td th:text="${helyseg.nev}"></td>
+                    <td th:text="${helyseg.orszag}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </div>
