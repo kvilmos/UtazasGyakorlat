@@ -1,4 +1,43 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="content">
-    <p>Home</p>
+    <section class="features-section">
+        <h2 class="section-title">Why Choose CAMELLUM?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏛️</div>
+                <h3 class="feature-title">Expert Local Guides</h3>
+                <p class="feature-text">Our experienced guides bring ancient history to life with their deep knowledge and passionate storytelling.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🐪</div>
+                <h3 class="feature-title">Authentic Experiences</h3>
+                <p class="feature-text">Immerse yourself in local culture with carefully curated experiences and off-the-beaten-path adventures.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3 class="feature-title">Luxury Comfort</h3>
+                <p class="feature-text">Travel in style with premium accommodations and personalized service throughout your journey.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="destinations-section">
+        <h2 class="section-title">Popular Destinations</h2>
+        <div class="destination-cards">
+            <div class="destination-card">
+                <div class="destination-info">
+                    <h3 class="destination-title">Egypt Wonders</h3>
+                    <p class="destination-desc">Explore the magnificent pyramids, cruise down the Nile, and discover ancient temples.</p>
+                    <a th:href="@{/offers}" class="cta-button">Explore Egypt</a>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-info">
+                    <h3 class="destination-title">Tunisia Magic</h3>
+                    <p class="destination-desc">Experience beautiful Mediterranean beaches, Roman ruins, and Sahara adventures.</p>
+                    <a th:href="@{/offers}" class="cta-button">Discover Tunisia</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

@@ -8,6 +8,9 @@
 body {
     background-color: #faf3e3;
     color: #333;
+    min-height: 100vh; /* Ensure minimum height is full viewport */
+    display: flex;     /* Enable flexbox */
+    flex-direction: column;
 }
 
 .navbar {
@@ -74,10 +77,11 @@ footer {
     text-align: center;
     padding: 15px;
     font-size: 17px;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     font-weight: bold;
+    margin-top: auto;
 }
 
 .logo {
