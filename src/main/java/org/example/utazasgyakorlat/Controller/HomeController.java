@@ -31,24 +31,21 @@ public class HomeController {
         model.addAttribute("contentTemplate", "home");
         return "layout";
     }
-
     @GetMapping("/offers")
     public String offers(Model model) {
         model.addAttribute("title", "CAMELUM - Offers");
         model.addAttribute("contentTemplate", "offers");
-        String str = A();
-        model.addAttribute("str", str);
+
+
+        List<Tavasz> tavaszOffers = (List<Tavasz>) tavaszRepository.findAll();
+        List<Szalloda> szallodas = (List<Szalloda>) szallodaRepository.findAll();
+        List<Helyseg> helysegs = (List<Helyseg>) helysegRepository.findAll();
+
+        model.addAttribute("tavaszOffers", tavaszOffers);
+        model.addAttribute("szallodas", szallodas);
+        model.addAttribute("helysegs", helysegs);
+
         return "layout";
-    }
-    String A() {
-        String str = "";
-
-        for(Tavasz tavasz : tavaszRepository.findAll()) {
-            str+=tavasz.getSorszam() +";"+tavasz.getSzalloda_az()+";"+tavasz.getIndulas()+";"+tavasz.getIdotartam()+";"+tavasz.getAr()+";"+tavasz.getSzalloda().getNev()+";"+tavasz.getSzalloda().getHelyseg().getNev()+";"+tavasz.getIndulas();
-            str+="<br>";
-        }
-
-        return str;
     }
 
     @GetMapping("/contact")
@@ -128,7 +125,7 @@ public class HomeController {
 
     @GetMapping("/admin/adminpanel")
     public String admin(Model model) {
-        model.addAttribute("title", "CAMELUM - AdminPanel");
+        model.addAttribute("title", "CAMELUM - Admin Panel");
         model.addAttribute("contentTemplate", "adminpanel");
         return "layout";
     }

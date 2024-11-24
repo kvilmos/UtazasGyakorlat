@@ -1,4 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="content">
-    <p th:utext="'Successful registration! <br/>' + ${id}" />
+    <div class="success-container">
+        <div class="success-message" th:fragment="content">
+            <p th:utext="'Successful registration!'" />
+        </div>
+    </div>
 </div>

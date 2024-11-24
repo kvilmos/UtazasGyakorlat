@@ -1,8 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:fragment="content">
-    <h1>Admin Panel</h1>
-    <div id="messages-container">
-        <p>Loading messages...</p>
+    <div class="admin-panel">
+        <h1>Admin Panel</h1>
+        <div class="status-bar">
+            Messages are automatically updated every 5 seconds
+        </div>
+        <div id="messages-container" class="messages-container">
+            <div class="loading-spinner"></div>
+        </div>
     </div>
 <script>
     function fetchMessages() {

@@ -1,0 +1,73 @@
+.offers-section {
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #FDF5E6, #FAEBD7);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #f47b20, #e15d10);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.table-wrapper {
+    max-height: 500px;  /* This will show approximately 20 rows */
+    overflow-y: auto;
+    margin-bottom: 2rem;
+    border: 2px solid #f4c96b;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.offers-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.offers-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.offers-table th {
+    background: linear-gradient(45deg, #f47b20, #e15d10);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 1rem;
+    text-align: left;
+}
+
+.offers-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.offers-table tbody tr:nth-child(even) {
+    background: #fdf5e6;
+}
+
+/* Scrollbar styling */
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #f47b20;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #e15d10;
+}

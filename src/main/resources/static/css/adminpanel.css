@@ -1,0 +1,106 @@
+.admin-panel {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.admin-panel h1 {
+    color: #f47b20;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.messages-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border: 2px solid #f4c96b;
+}
+
+.message-card {
+    background: #faf3e3;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+    border-left: 4px solid #f47b20;
+}
+
+.message-card:hover {
+    transform: translateX(5px);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.user-name {
+    font-weight: bold;
+    color: #f47b20;
+    font-size: 1.1rem;
+}
+
+.message-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.message-content {
+    color: #333;
+    line-height: 1.4;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.loading-spinner::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f4c96b;
+    border-top: 4px solid #f47b20;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.message-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.action-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+.action-button:hover {
+    color: #f47b20;
+}
+
+.status-bar {
+    background: #f4c96b;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}

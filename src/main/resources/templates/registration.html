@@ -1,19 +1,70 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="content">
-    <h3>Create your account!</h3>
-    <p th:utext=" ${error}">
-    <p th:if="${param.error}">Incorrect Password or Email</p>
-    <form action="#" th:action="@{/registration_process}" th:object="${reg}" method="post">
-            <legend>Sign Up</legend>
-            <p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></p>
-            <p><input type="text" th:field="*{firstname}" placeholder="Firstname" required maxlength="256" minlength="2" pattern="^[A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű]{2,256}$"/></p>
-            <p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></p>
-            <p><input type="text" th:field="*{lastname}" placeholder="Lastname" required maxlength="256" minlength="2" pattern="^[A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű]{2,256}$" /></p>
-            <p th:if="${#fields.hasErrors('email')}">Invalid Email form</p>
-            <p><input type="email" th:field="*{email}" placeholder="Email" required maxlength="256" minlength="6" pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-z]{2,7}$"/></p>
-            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-            <p><input type="password" th:field="*{password}" placeholder="Password" required maxlength="256" minlength="6"/></p>
-            <p><input type="submit" value="Sign Up" /></p>
-    </form>
+<div th:fragment="content" class="registration-container">
+    <div class="login-container">
+        <form class="login-form" action="#" th:action="@{/registration_process}" th:object="${reg}" method="post">
+            <h2>Create your account</h2>
+
+            <!-- Error messages -->
+            <div th:if="${error}" class="alert alert-error" th:utext="${error}"></div>
+            <div th:if="${param.error}" class="alert alert-error">Incorrect Password or Email</div>
+
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text"
+                       id="firstname"
+                       th:field="*{firstname}"
+                       placeholder="Enter your first name"
+                       required
+                       maxlength="256"
+                       minlength="2"
+                       pattern="^[A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű]{2,256}$"/>
+                <div class="error-message" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text"
+                       id="lastname"
+                       th:field="*{lastname}"
+                       placeholder="Enter your last name"
+                       required
+                       maxlength="256"
+                       minlength="2"
+                       pattern="^[A-ZÁÉÍÓÖŐÚÜŰa-záéíóöőúüű]{2,256}$"/>
+                <div class="error-message" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email"
+                       id="email"
+                       th:field="*{email}"
+                       placeholder="Enter your email"
+                       required
+                       maxlength="256"
+                       minlength="6"
+                       pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[a-z]{2,7}$"/>
+                <div class="error-message" th:if="${#fields.hasErrors('email')}">Invalid Email format</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password"
+                       id="password"
+                       th:field="*{password}"
+                       placeholder="Enter your password"
+                       required
+                       maxlength="256"
+                       minlength="6"/>
+                <div class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </div>
+
+            <button type="submit" class="login-btn">Create Account</button>
+
+            <div class="register-link">
+                Already have an account? <a th:href="@{/login}">Login here</a>
+            </div>
+        </form>
+    </div>
 </div>
 

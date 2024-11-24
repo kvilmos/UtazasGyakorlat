@@ -1,29 +1,31 @@
 <div xmlns:th="http://www.thymeleaf.org"
      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <ul>
-        <li>
-            <a th:href="@{/}">Home</a>
-        </li >
-           <li sec:authorize="isAnonymous()">
-               <a th:href="@{/login}">Login</a>
-           </li>
-           <li sec:authorize="isAnonymous()">
-               <a th:href="@{/registration}">Registration</a>
-           </li>
-        <li sec:authorize="isAuthenticated()" >
-            <a th:href="@{/offers}">Offers</a>
-        </li >
-        <li sec:authorize="hasRole('ROLE_ADMIN')">
-            <a th:href="@{/admin/adminpanel}">AdminPanel</a>
-        </li>
-        <li>
-            <a th:href="@{/contact}">Contact Us</a>
-        </li>
-        <li sec:authorize="isAuthenticated()">
-            <a th:href="@{/logout}">Logout</a>
-        </li>
-        <li sec:authorize="isAuthenticated()" class="welcometext">
-            <h3>Welcome <span sec:authentication="principal.username"> User</span></h3>
-        </li>
-    </ul>
+    <nav class="navbar">
+        <ul class="menu">
+            <li>
+                <a th:href="@{/}">
+                    <img src="/images/logo.svg" alt="CC Travelling Agency Logo" class="logo">
+                </a>
+            </li>
+            <li sec:authorize="isAnonymous()">
+                <a th:href="@{/login}" class="menu-link">Login</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/offers}" class="menu-link">Offers</a>
+            </li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="@{/admin/adminpanel}" class="menu-link">AdminPanel</a>
+            </li>
+            <li>
+                <a th:href="@{/contact}" class="menu-link">Contact Us</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}" class="menu-link">Logout</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="welcometext">
+                <h3>Welcome <span sec:authentication="principal.username">User</span>!</h3>
+            </li>
+        </ul>
+        <div class="right-text">CAMELLUM Travelling Agency</div>
+    </nav>
 </div>

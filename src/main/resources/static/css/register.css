@@ -1,0 +1,64 @@
+.alert {
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.alert-error {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 1px solid #dc3545;
+    color: #dc3545;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    padding-left: 15px;
+}
+
+.form-group input:valid:not(:placeholder-shown) {
+    border-color: #28a745;
+}
+
+
+.login-form {
+    max-width: 450px;
+}
+
+.success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    background: linear-gradient(135deg, #FDF5E6, #FAEBD7);
+    padding: 2rem;
+}
+
+.success-message {
+    background-color: white;
+    padding: 3rem 4rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+}
+
+.success-message p {
+    font-size: 1.25rem;
+    color: #5C4033;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.success-message::before,
+.success-message::after {
+    content: '🐪';
+    display: block;
+    font-size: 2rem;
+    color: #8B4513;
+    margin: 1rem 0;
+}

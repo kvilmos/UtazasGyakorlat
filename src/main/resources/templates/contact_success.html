@@ -1,4 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="content">
-  <p th:utext="'Thank you! Your submission has been sent. <br/> ID:' + ${id}" />
+  <div class="success-container">
+    <div class="success-message" th:fragment="content">
+      <p th:utext="'Your submission has been sent!'" />
+    </div>
+  </div>
 </div>
