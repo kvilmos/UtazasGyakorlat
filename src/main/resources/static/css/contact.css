@@ -1,14 +1,14 @@
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 140px);
-    padding: 20px;
-    position: relative;
-}
+.contact-container {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     min-height: calc(100vh - 140px);
+     padding: 20px;
+     position: relative;
+ }
 
-.login-form {
+.contact-form {
     background: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 15px;
@@ -19,7 +19,7 @@
     border: 2px solid #f4c96b;
 }
 
-.login-form h2 {
+.contact-form h2 {
     color: #e15d10;
     text-align: center;
     margin-bottom: 30px;
@@ -29,6 +29,7 @@
 
 .form-group {
     margin-bottom: 25px;
+    position: relative;
 }
 
 .form-group label {
@@ -38,7 +39,8 @@
     font-weight: 500;
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid #f4c96b;
@@ -48,13 +50,27 @@
     background: rgba(255, 255, 255, 0.9);
 }
 
-.form-group input:focus {
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+    border-radius: 15px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
     outline: none;
     border-color: #e15d10;
     box-shadow: 0 0 10px rgba(244, 165, 107, 0.3);
 }
 
-.login-btn {
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    padding-left: 15px;
+}
+
+.submit-btn {
     width: 100%;
     padding: 12px;
     background: linear-gradient(45deg, #f47b20, #e15d10);
@@ -68,31 +84,13 @@
     margin-top: 15px;
 }
 
-.login-btn:hover {
+.submit-btn:hover {
     background: linear-gradient(45deg, #e15d10, #d66318);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(244, 165, 107, 0.4);
 }
 
-.register-link {
-    text-align: center;
-    margin-top: 20px;
-    color: #333;
-}
-
-.register-link a {
-    color: #e15d10;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.register-link a:hover {
-    color: #f47b20;
-    text-decoration: underline;
-}
-
-.login-form::before {
+.contact-form::before {
     content: '';
     position: absolute;
     top: -10px;
@@ -104,7 +102,7 @@
     z-index: -1;
 }
 
-.login-form::after {
+.contact-form::after {
     content: '🐪';
     position: absolute;
     top: -30px;
