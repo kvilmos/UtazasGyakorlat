@@ -1,5 +1,6 @@
 package org.example.utazasgyakorlat.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class Helyseg {
     @Column(name="orszag")
     private String orszag;
 
-    @OneToMany
-    @JoinColumn(name = "helyseg_az")
+    @OneToMany(mappedBy = "helyseg")
+    @JsonBackReference
     private List<Szalloda> szallodaList;
 
     public List<Szalloda> getSzallodaList() {

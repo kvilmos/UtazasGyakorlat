@@ -33,6 +33,7 @@ public class WebSecurityConfig {
                                         .requestMatchers("/resources/**", "/" ,"/contact", "/contact_sendmessage").permitAll()
                                         .requestMatchers("/resources/**", "/","/login").anonymous()
                                         .requestMatchers ("/resources/**", "/", "/registration", "/registration_process").anonymous()
+                                        .requestMatchers("/szalloda/**").permitAll()
 
                                         //.requestMatchers("/resources/**","/offers").permitAll() //TEST
 
