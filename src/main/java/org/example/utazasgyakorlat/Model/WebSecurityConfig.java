@@ -3,6 +3,7 @@ package org.example.utazasgyakorlat.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -27,33 +28,33 @@ public class WebSecurityConfig {
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-                http.csrf(csrf -> csrf.disable())
-                        .authorizeHttpRequests(
-                                auth -> auth
-                                        .requestMatchers("/resources/**", "/" ,"/contact", "/contact_sendmessage").permitAll()
-                                        .requestMatchers("/resources/**", "/","/login").anonymous()
-                                        .requestMatchers ("/resources/**", "/", "/registration", "/registration_process").anonymous()
+        http
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.GET, "/szalloda/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/szalloda/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/szalloda/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/szalloda/**").permitAll()
+                        .requestMatchers("/resources/**", "/", "/contact", "/contact_sendmessage").permitAll()
+                        .requestMatchers("/login", "/registration", "/registration_process").anonymous()
+                        .requestMatchers("/error").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/login?error=true")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/")
+                        .permitAll()
+                );
 
-                                        //.requestMatchers("/resources/**","/offers").permitAll() //TEST
-
-                                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-
-                                        .anyRequest().authenticated()
-                        )
-
-                        .formLogin(
-                                form -> form
-                                        .loginPage("/login")
-                                        .defaultSuccessUrl("/")
-                                        .failureUrl("/login?error=true")
-                                        .permitAll()
-                        ).logout(
-                                logout -> logout
-                                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                        .logoutSuccessUrl("/")
-                                        .permitAll()
-                        );
         return http.build();
     }
     @Bean

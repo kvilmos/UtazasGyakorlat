@@ -1,5 +1,7 @@
 package org.example.utazasgyakorlat.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -24,11 +26,11 @@ public class Szalloda {
     private boolean felpanzio;
 
     @ManyToOne
-    @JoinColumn(name = "helyseg_az", insertable=false, updatable=false)
+    @JoinColumn(name = "helyseg_az", insertable = false, updatable = false)
     private Helyseg helyseg;
 
-    @OneToMany
-    @JoinColumn(name = "szalloda_az")
+    @OneToMany(mappedBy = "szalloda", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Tavasz> tavaszList;
 
     public Helyseg getHelyseg() {
