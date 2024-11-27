@@ -1,6 +1,7 @@
 package org.example.utazasgyakorlat.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public class Helyseg {
     @Column(name="orszag")
     private String orszag;
 
-    @OneToMany(mappedBy = "helyseg")
-    @JsonBackReference
+    @OneToMany(mappedBy = "helyseg", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Szalloda> szallodaList;
 
     public List<Szalloda> getSzallodaList() {

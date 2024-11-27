@@ -1,6 +1,7 @@
 package org.example.utazasgyakorlat.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -22,7 +23,7 @@ public class Tavasz {
 
     @ManyToOne
     @JoinColumn(name = "szalloda_az", insertable = false, updatable = false)
-    @JsonBackReference
+    @JsonIgnore
     private Szalloda szalloda;
 
     public Szalloda getSzalloda() {

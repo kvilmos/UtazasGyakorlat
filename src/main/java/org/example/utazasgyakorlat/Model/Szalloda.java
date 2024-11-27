@@ -1,5 +1,6 @@
 package org.example.utazasgyakorlat.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -26,11 +27,10 @@ public class Szalloda {
 
     @ManyToOne
     @JoinColumn(name = "helyseg_az", insertable = false, updatable = false)
-    @JsonManagedReference
     private Helyseg helyseg;
 
-    @OneToMany(mappedBy = "szalloda")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "szalloda", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Tavasz> tavaszList;
 
     public Helyseg getHelyseg() {
